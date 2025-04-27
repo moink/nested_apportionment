@@ -1,0 +1,6 @@
+[tool.ruff.lint]
+extend-select = ["D", "A"]
+ignore = ["D203", "D213", "D413"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
