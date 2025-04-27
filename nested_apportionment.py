@@ -86,7 +86,7 @@ def sum_nested(values: dict) -> dict[str, float]:
 def initialize_errors(predictions: dict) -> list[dict[str:float]]:
     """Initialize error state for nested predictions.
 
-    Traverse the nested structure of the input argument and initializes an error
+    Traverse the nested structure of the input argument and initialize an error
     dictionary at each level, setting all error values to zero.
 
     Also validate that the structure of the input argument has a consistent structure,
@@ -126,16 +126,18 @@ def max_remainder_round(
 ) -> tuple[dict[str, int], dict[str, float]]:
     """Round predictions using the max remainder method.
 
-     Ensure that their sum is equal to the total. Also return newly added errors due
-     to the rounding.
+     Ensure that their sum is equal to the total. Also return errors due to the rounding.
 
     Args:
         predictions: A dictionary of predicted values.
         total: The target total sum after rounding.
-        errors: A dictionary of errors, to be updated during rounding.
+        errors: A dictionary of errors from previous rounding steps.
 
     Returns:
-        A tuple containing the rounded predictions and updated errors.
+        rounded_preds
+            Rounded predictions. Has the same structure as the `predictions` argument.
+        rounding_errors
+            Difference between the rounded result and the predictions.
     """
     floor_preds = {k: int(v) for k, v in predictions.items()}
     remainders = {k: v - floor_preds[k] for k, v in predictions.items()}
